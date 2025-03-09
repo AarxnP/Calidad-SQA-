@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}Lista de Pokémon{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h1>Lista de Pokémon</h1>
+    <div class="d-flex flex-wrap gap-5 justify-content-center">
+        {% for pokemon in pokemons %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}"
+                 style="height: 200px; width: fit-content; max-width: 100%; margin-inline: auto;">
+            <div class="card-body">
+                <h5 class="card-title">{{ pokemon.name }}</h5>
+                <p class="card-text">Tipo: {{ pokemon.type }}</p>
+                <a href="{% url 'pokemons_datails' pokemon.id %}" class="btn btn-primary">Ver Detalles</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Paginación -->
+    <div class="pagination">
+        {% if prev_offset is not None %}
+        <a href="?offset={{ prev_offset }}&limit={{ limit }}" class="btn btn-secondary">Anterior</a>
+        {% endif %}
+        
+        <span>Página {{ current_page }}</span>
+        
+        {% if next_offset is not None %}
+        <a href="?offset={{ next_offset }}&limit={{ limit }}" class="btn btn-secondary">Siguiente</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
