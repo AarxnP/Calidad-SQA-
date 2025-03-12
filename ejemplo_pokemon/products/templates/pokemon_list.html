@@ -4,34 +4,39 @@
 
 {% block content %}
 <div class="container text-center">
-    <h1>Lista de Pokémon</h1>
-    <div class="d-flex flex-wrap gap-5 justify-content-center">
+    <h1 class="my-4 text-primary">Lista de Pokémon</h1>
+    <div class="d-flex flex-wrap gap-4 justify-content-center">
         {% for pokemon in pokemons %}
-        <div class="card" style="width: 18rem;">
-            <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}"
-                 style="height: 200px; width: fit-content; max-width: 100%; margin-inline: auto;">
-            <div class="card-body">
-                <h5 class="card-title">{{ pokemon.name }}</h5>
-                <p class="card-text">Tipo: {{ pokemon.type }}</p>
-                <a href="{% url 'pokemons_datails' pokemon.id %}" class="btn btn-primary">Ver Detalles</a>
+        <div class="card shadow-lg border-0 rounded" style="width: 18rem;">
+            <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" class="card-img-top"
+                 style="height: 200px; object-fit: contain; padding: 10px;">
+            <div class="card-body text-center">
+                <h5 class="card-title fw-bold">{{ pokemon.name }}</h5>
+                <p class="card-text text-muted">Tipo: {{ pokemon.type }}</p>
+                <div class="d-flex flex-column gap-2">
+                    <a href="{% url 'pokemons_datails' pokemon.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
+                    <a href="{% url 'edit_pokemon' pokemon.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'delete_pokemon' pokemon.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </div>
             </div>
         </div>
         {% endfor %}
     </div>
 
    <!-- Paginación -->
-<div class="pagination">
-    {% if prev_url is not None %}
-    <a href="?page={{ prev_url }}" class="btn btn-secondary">Anterior</a>
-    {% endif %}
-    
-    <span>Página {{ current_page }} de {{ total_pages }}</span>
-    
-    {% if next_url is not None %}
-    <a href="?page={{ next_url }}" class="btn btn-secondary">Siguiente</a>
-    {% endif %}
-    
-    <a href="?page=1" class="btn btn-secondary">Primera página</a>
-    <a href="?page={{ total_pages }}" class="btn btn-secondary">Última página</a>
-  </div>
+   <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+        {% if prev_url is not None %}
+        <a href="?page={{ prev_url }}" class="btn btn-secondary">Anterior</a>
+        {% endif %}
+        
+        <span class="fw-bold">Página {{ current_page }} de {{ total_pages }}</span>
+        
+        {% if next_url is not None %}
+        <a href="?page={{ next_url }}" class="btn btn-secondary">Siguiente</a>
+        {% endif %}
+        
+        <a href="?page=1" class="btn btn-dark">Primera página</a>
+        <a href="?page={{ total_pages }}" class="btn btn-dark">Última página</a>
+    </div>
+</div>
 {% endblock %}

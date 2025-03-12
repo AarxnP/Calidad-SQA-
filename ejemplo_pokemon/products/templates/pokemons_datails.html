@@ -3,20 +3,26 @@
 {% block title %}{{ pokemon.name }}{% endblock %}
 
 {% block content %}
-<div class="container text-center">
-    <h1>{{ pokemon.name }}</h1>
-    <div class="row">
+<div class="container mt-5">
+    <h1 class="text-center text-primary mb-4">{{ pokemon.name }}</h1>
+    <div class="row justify-content-center">
         <div class="col-md-6">
-            <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" class="img-fluid p-3" 
-                 style="width: 100%; max-width: 400px; height: auto;">
+            <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" class="img-fluid rounded shadow-lg" 
+                 style="max-width: 100%; height: auto;">
         </div>
         <div class="col-md-6">
-            <h3>Pokémon ID: #{{ pokemon.id }}</h3>
-            <p><strong>Tipo:</strong> {{ pokemon.type }}</p>
-            <p><strong>Peso:</strong> {{ pokemon.weight }} kg</p>
-            <p><strong>Altura:</strong> {{ pokemon.height }} m</p>
-            <p><strong>Movimiento:</strong> {{ pokemon.move }}</p>
-            <a class="btn btn-primary" href="{% url 'pokemon_list' %}">Volver a la lista</a>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title">Pokémon ID: #{{ pokemon.id }}</h3>
+                    <p><strong>Tipo:</strong> {{ pokemon.type }}</p>
+                    <p><strong>Peso:</strong> {{ pokemon.weight }} kg</p>
+                    <p><strong>Altura:</strong> {{ pokemon.height }} m</p>
+                    <p><strong>Movimiento:</strong> {{ pokemon.move }}</p>
+                    <div class="text-center mt-4">
+                        <a class="btn btn-primary btn-lg" href="{% url 'pokemon_list' %}">Volver a la lista</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
