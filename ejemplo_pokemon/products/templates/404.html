@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}Página No Encontrada{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="text-danger">404 - Pokémon No Encontrado</h1>
+    <p class="text-muted">El Pokémon que buscas no existe o fue eliminado.</p>
+    <a href="{% url 'pokemon_list' %}" class="btn btn-primary">Volver a la Lista</a>
+</div>
+{% endblock %}

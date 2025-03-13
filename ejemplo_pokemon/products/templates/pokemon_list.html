@@ -5,6 +5,10 @@
 {% block content %}
 <div class="container text-center">
     <h1 class="my-4 text-primary">Lista de Pokémon</h1>
+    
+    <!-- Botón para Crear Nuevo Pokémon -->
+    <a href="{% url 'pokemon_create' %}" class="btn btn-success mb-4">➕ Crear Nuevo Pokémon</a>
+
     <div class="d-flex flex-wrap gap-4 justify-content-center">
         {% for pokemon in pokemons %}
         <div class="card shadow-lg border-0 rounded" style="width: 18rem;">
@@ -13,11 +17,7 @@
             <div class="card-body text-center">
                 <h5 class="card-title fw-bold">{{ pokemon.name }}</h5>
                 <p class="card-text text-muted">Tipo: {{ pokemon.type }}</p>
-                <div class="d-flex flex-column gap-2">
-                    <a href="{% url 'pokemons_datails' pokemon.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
-                    <a href="{% url 'edit_pokemon' pokemon.id %}" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="{% url 'delete_pokemon' pokemon.id %}" class="btn btn-danger btn-sm">Eliminar</a>
-                </div>
+                <a href="{% url 'pokemons_datails' pokemon.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
             </div>
         </div>
         {% endfor %}
